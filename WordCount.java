@@ -21,9 +21,8 @@ public class WordCount {
 
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
-      StringTokenizer itr = new StringTokenizer(value.toString().replaceAll(" knows ","/"),"/");
+      StringTokenizer itr = new StringTokenizer(value.toString().replaceAll("\tknows\t","/"),"/");
       while (itr.hasMoreTokens()) {
-        if(itr.toString()=="knows"){itr.nextToken();}
         word.set(itr.nextToken());
         context.write(word, one);
       }
